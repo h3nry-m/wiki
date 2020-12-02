@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia: New Entry
+{% endblock %}
+
+
+{% block body %}
+    <h1>Create new entry</h1>
+    {% if error %}
+        <p>This entry already exists. Please change it.</p>
+    {% endif %}
+    <form action="{% url 'new' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit">
+    </form>
+    
+{% endblock %}
+
+<!-- <textarea id="newentry" name="newentry" rows="3" cols="10">
+    At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+    </textarea> -->
