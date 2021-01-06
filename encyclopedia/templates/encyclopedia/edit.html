@@ -6,12 +6,17 @@
 
 {% block body %}
     <h1>{{title}}</h1>
-    <form action="{% url "index" %}" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
-        <textarea id="edit" name="edit">
+        <p>Title:</p>
+        <input type="text" id="title" name="title" value = {{title}}>
+        <br><br>
+        <p>Content:</p>
+        <textarea id="content" name="content" type='text'>
             {{ content }}
           </textarea>
           <br><br>
           <input type="submit" value="Save">
     </form>
 {% endblock %}
+
