@@ -7,4 +7,11 @@
 {% block body %}
     <h1>Search Results</h1>
         <p>You searched for {{searched}} but it doesn't exist. Try again</p>
+        {% if exist %}
+            <p>Did you mean:</p>
+            {% for word in similar_words %}
+                temp = {{word}}
+                <li><a href="{% url 'entry' temp %}">{{word}}</a></li>
+            {% endfor %}
+        {% endif %}
 {% endblock %}

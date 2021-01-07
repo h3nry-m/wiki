@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.urls import reverse
 from . import util
+from collections import Counter
 
 
 class NewEntryForm(forms.Form):
@@ -12,11 +13,6 @@ class NewEntryForm(forms.Form):
 
 class SearchForm(forms.Form):
     search = forms.CharField(label="Search")
-
-
-class InfoForm(forms.Form):
-    # title = forms.CharField(label="Title")
-    content = forms.CharField(label="Content")
 
 
 def index(request):
@@ -32,9 +28,22 @@ def results(request):
             return HttpResponseRedirect(reverse('entry', args=(info,)))
             # get_entry(request, info) <= can try doing it this way?
         else:
+            exist = False
+            reference = Counter(info.lower())
+            temp = []
+            for word in util.list_entries():
+                temp.append([Counter(word.lower()), word])
+            similar_words = []
+            for key, word in temp:
+                if reference & key == reference:
+                    similar_words.append(word)
+            if len(similar_words) > 0:
+                exist = True
             return render(request, "encyclopedia/results.html", {
                 "form": SearchForm(),
-                "searched": info
+                "searched": info,
+                "similar_words": similar_words,
+                "exist": exist
             })
     return render(request, "encyclopedia/results.html")
 
