@@ -4,6 +4,7 @@ from django import forms
 from django.urls import reverse
 from . import util
 from collections import Counter
+from random import randint
 
 
 class NewEntryForm(forms.Form):
@@ -15,10 +16,24 @@ class SearchForm(forms.Form):
     search = forms.CharField(label="Search")
 
 
+def get_entry(request, title):
+    return render(request, "encyclopedia/get_entry.html", {
+        "entry": util.get_entry(title),
+        "title": title.capitalize(),
+    })
+
+
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
+
+
+def random(request):
+    max_number = len(util.list_entries())-1
+    chosen_number = randint(0, max_number)
+    chosen_entry = util.list_entries()[chosen_number]
+    return HttpResponseRedirect(reverse('entry', args=(chosen_entry,)))
 
 
 def results(request):
@@ -58,13 +73,6 @@ def edit(request, title):
     return render(request, "encyclopedia/edit.html", {
         "content": util.get_entry(title),
         "title": title.capitalize()
-    })
-
-
-def get_entry(request, title):
-    return render(request, "encyclopedia/get_entry.html", {
-        "entry": util.get_entry(title),
-        "title": title.capitalize(),
     })
 
 
