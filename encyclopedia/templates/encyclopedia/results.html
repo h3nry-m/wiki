@@ -10,7 +10,7 @@
         {% if exist %}
             <p>Did you mean:</p>
             {% for word in similar_words %}
-                <li><a href="{% url 'index' %}">{{word}}</a></li>
+                <li><a href="/wiki/{{word}}">{{word}}</a></li>
             {% endfor %}
         {% endif %}
 {% endblock %}
