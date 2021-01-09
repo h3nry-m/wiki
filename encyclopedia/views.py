@@ -5,6 +5,7 @@ from django.urls import reverse
 from . import util
 from collections import Counter
 from random import randint
+from markdown2 import Markdown
 
 
 class NewEntryForm(forms.Form):
@@ -17,8 +18,13 @@ class SearchForm(forms.Form):
 
 
 def get_entry(request, title):
+    item_of_interest = util.get_entry(title)
+    print("Original:", item_of_interest)
+    markdowner = Markdown()
+    new = markdowner.convert(item_of_interest)
+    print("Markdowned:", new)
     return render(request, "encyclopedia/get_entry.html", {
-        "entry": util.get_entry(title),
+        "entry": new,
         "title": title.capitalize(),
     })
 
@@ -55,7 +61,6 @@ def results(request):
             if len(similar_words) > 0:
                 exist = True
             return render(request, "encyclopedia/results.html", {
-                "form": SearchForm(),
                 "searched": info,
                 "similar_words": similar_words,
                 "exist": exist

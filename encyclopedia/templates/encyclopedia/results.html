@@ -10,8 +10,7 @@
         {% if exist %}
             <p>Did you mean:</p>
             {% for word in similar_words %}
-                temp = {{word}}
-                <li><a href="{% url 'entry' temp %}">{{word}}</a></li>
+                <li><a href="{% url 'index' %}">{{word}}</a></li>
             {% endfor %}
         {% endif %}
 {% endblock %}

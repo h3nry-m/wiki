@@ -7,7 +7,7 @@
 {% block body %}
     {% if entry %}
         <h1>{{title}}</h1>
-        <p>{{ entry }} </p>
+        {{ entry| safe  }} 
         <a href="{{title}}/edit/">Edit</a>
     {% else %}
         <h1>This entry does not exist</h1>
