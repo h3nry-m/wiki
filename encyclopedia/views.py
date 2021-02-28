@@ -9,20 +9,21 @@ from markdown2 import Markdown
 
 
 class NewEntryForm(forms.Form):
+    """A class to facilitate creating new search forms"""
     title = forms.CharField(label="Title")
     content = forms.CharField(label="Content")
 
 
 class SearchForm(forms.Form):
+    """A class to faciliate creating new search forms"""
     search = forms.CharField(label="Search")
 
 
 def get_entry(request, title):
+    """Retrieves the entry and converts the entry information into Markdown formatting"""
     item_of_interest = util.get_entry(title)
-    print("Original:", item_of_interest)
     markdowner = Markdown()
     new = markdowner.convert(item_of_interest)
-    print("Markdowned:", new)
     return render(request, "encyclopedia/get_entry.html", {
         "entry": new,
         "title": title.capitalize(),
@@ -30,12 +31,14 @@ def get_entry(request, title):
 
 
 def index(request):
+    """Main page with a list of all entries"""
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
 
 
 def random(request):
+    """Returns a random page based off the existing entries"""
     max_number = len(util.list_entries())-1
     chosen_number = randint(0, max_number)
     chosen_entry = util.list_entries()[chosen_number]
@@ -43,6 +46,7 @@ def random(request):
 
 
 def results(request):
+    """Returns the appropriate page if search results are found. If not then redirects to a different page that has results close to the search parameter."""
     if request.method == "GET":
         info = request.GET['search']
         if info in util.list_entries():
@@ -69,6 +73,7 @@ def results(request):
 
 
 def edit(request, title):
+    """Allows edit of the post and redirects to the same page"""
     if request.method == "POST":
         form = request.POST
         title = form['title']
@@ -82,6 +87,7 @@ def edit(request, title):
 
 
 def new(request):
+    """Allows creation of a new post and redirects to the new page"""
     if request.method == "POST":
         form = NewEntryForm(request.POST)
         if form.is_valid():
