@@ -1,9 +1,9 @@
 # wiki
 
-##Project title##
+## Project title
 
-##Motivation##
+## Motivation
 
-#Screenshots##
+## Screenshots
 
-##Features##
+## Features
