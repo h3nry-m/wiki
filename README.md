@@ -7,16 +7,15 @@ Technology used:
 - Python 3.6
 - Django 3.0
 
-## How does it work?
-
-## Screenshots
-
-![Testing](encyclopedia/screenshot/example.png)
-
 ## Features
 
 - Ability to search existing entires and return a close match page
 - Ability to randomly jump to any entry
+
+## Screenshots
+
+![Entry Page](encyclopedia/screenshot/example.png)
+![Search Result](encyclopedia/screenshot/search_result.png)
 
 ## Deployment
 
