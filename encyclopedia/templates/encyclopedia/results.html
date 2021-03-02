@@ -6,11 +6,11 @@
 
 {% block body %}
     <h1>Search Results</h1>
-        <p>You searched for {{searched}} but it doesn't exist. Try again</p>
+        <p>You searched for {{searched}} but it does not exist. Please try again.</p>
         {% if exist %}
             <p>Did you mean:</p>
             {% for word in similar_words %}
-                <li><a href="/wiki/{{word}}">{{word}}</a></li>
+                <ul><a href="/wiki/{{word}}">{{word}}</a></ul>
             {% endfor %}
         {% endif %}
 {% endblock %}

@@ -12,11 +12,13 @@
         <input type="text" id="title" name="title" value = {{title}}>
         <br><br>
         <p>Content:</p>
-        <textarea id="content" name="content" type='text'>
+        <div>
+        <textarea id="content" name="content" rows="10" max-width=200px type='text'>
             {{ content }}
           </textarea>
           <br><br>
           <input type="submit" value="Save">
+        </div>
     </form>
 {% endblock %}
 
