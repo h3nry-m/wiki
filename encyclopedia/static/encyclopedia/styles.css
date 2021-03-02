@@ -14,11 +14,12 @@ h1 {
 
 textarea {
   height: 1;
-  width: 10%;
+  width: 100%;
+  max-width: 300px;
 }
 
 .main {
-  padding: 10px;
+  padding: 100em;
 }
 
 .search {
