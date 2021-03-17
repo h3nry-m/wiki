@@ -51,7 +51,7 @@ def results(request):
         info = request.GET['search']
         if info in util.list_entries():
             return HttpResponseRedirect(reverse('entry', args=(info,)))
-            # get_entry(request, info) <= can try doing it this way?
+            # get_entry(request, info) <= can also try doing it this way
         else:
             exist = False
             reference = Counter(info.lower())
