@@ -25,7 +25,7 @@ Run:
 
 `python manage.py runserver`
 
-Add a /wiki to the local server so that the browser reads:
+Add a "/wiki" to the address of the local server so that the URL reads:
 
 http://127.0.0.1:8000/wiki/
 
