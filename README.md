@@ -19,7 +19,7 @@ Technology used:
 
 ## Deployment
 
-Via the terminal navigate to the folder that includes manage.py.
+Via the terminal, navigate to the folder that includes manage.py.
 
 Run:
 
